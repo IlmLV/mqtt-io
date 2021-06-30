@@ -4,9 +4,10 @@ services:
   mqtt-io:
     image: ilmlv/mqtt-io:latest
     build:
-      context: ./mqtt-io
+      context: ./
       args:
-        VERSION: 2.1.8
+        VERSION: latest # build from latest github source
+        #VERSION: 2.1.8
         #APT_INSTALL: 
         PIP_INSTALL: Adafruit_BBIO gpiod adafruit_circuitpython_mcp230xx OrangePi.GPIO pcf8574 pcf8575 pifacedigitalio pifacecommon RPi.GPIO adafruit-circuitpython-ads1x15 adafruit-circuitpython-ahtx0 smbus2 RPi.bme280 bme680 Adafruit_DHT w1thermsensor>=2.0.0 adafruit-mcp3008 pyserial
     container_name: mqtt-io

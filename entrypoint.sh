@@ -20,4 +20,4 @@ if [ ${PIP_UPDATE:+x} ]; then
 fi
 
 echo "-- STARTING mqtt-io --"
-exec python -m mqtt_io", "mqtt_io /config.yml "$@"
+exec python -m mqtt_io /config.yml "$@"

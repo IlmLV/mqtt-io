@@ -25,7 +25,16 @@ USER mqttio
 WORKDIR /home/mqttio
 
 # Install mqtt-io
-RUN if [ "$VERSION" != "" ] ; then \
+RUN if [ "$VERSION" = "latest" ] ; then \
+        export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
+        pip install --user poetry && \
+        export PATH="${PATH}:/home/mqttio/.local/bin" && \
+        git clone https://github.com/flyte/mqtt-io.git /tmp/mqtt-io && \
+        cd /tmp/mqtt-io && \
+        poetry build --format=sdist && \
+        python -m pip install ./dist/mqtt-io-* && \
+        rm -rf /tmp/mqtt-io ; \
+    elif [ "$VERSION" != "" ] ; then \
         pip install mqtt-io==$VERSION ; \
     else \
         pip install mqtt-io ; \
